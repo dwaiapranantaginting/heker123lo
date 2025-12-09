@@ -3,31 +3,42 @@ uses crt;
 type
     kebutuhan=record
         nama: string;
-        persen: real;
+        p_kebutuhan: longint;
         saldo: longint;
         end;
+const
+    max = 100;
 var
     i: integer;
-    butuh: array [1..5] of kebutuhan;
+    butuh: array [1..max] of kebutuhan;
+    b_kebutuhan : integer;
     pemasukan,sisa: longint;
     pengeluaran: array [1..5] of longint;
-begin
-    clrscr;
-    write ('masukkan pemasukan bulanan: '); readln (pemasukan);
-    writeln ('masukkan jenis kebutuhan (maksimal 5 jenis): ');
-    for i:=1 to 5 do begin
-            write ('jenis kebutuhan: '); readln (butuh[i].nama); end;
-    writeln;
+    total : integer;
 
-    writeln ('pilih persentase kebutuhan (dalam desimal): [50%] [20%] [15%] [10%] [5%] ');
-    for i:= 1 to 5 do begin
+procedure inputanUser;
+begin
+clrscr;
+    write('Masukkan Pemasukkan Bulanan kamu : '); readln(pemasukan);
+    write('Masukkan Banyak jenis kebutuhan kamu (misalnya makan, skincare, tabungan <== terhitung 3) : '); readln(b_kebutuhan);
+    for i := 1 to b_kebutuhan do begin
+        write('jenis kebutuhan ke-', i, ' :'); readln(butuh[i].nama);
+        end;
+        writeln;
+
+        writeln('pilih pengeluaran setiap jenis kebutuhan (misalnya skincare : 100000)');
+        total := 0;
+    for i:= 1 to b_kebutuhan do begin
         with butuh[i] do begin
-            write (nama,': '); readln (persen);
-            // disini buat pilihannya cuma bisa dipilih sekali, kalo bisa buat di function/procedure
-            saldo:= round (persen*pemasukan); 
-            writeln (nama,': ',saldo);end;
+            write (nama,': '); readln(p_kebutuhan);
+
+            total := total + p_kebutuhan;
+        end;
     end;
     writeln;
+    writeln('total pengeluaran kamu :', total);
+end;
 
-    repeat
+begin
+inputanUser;
 end.
