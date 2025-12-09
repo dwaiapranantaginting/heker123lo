@@ -30,6 +30,4 @@ begin
     writeln;
 
     repeat
-        
-
 end.
