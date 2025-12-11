@@ -14,7 +14,6 @@ var
     butuh: array [1..max] of kebutuhan;
     b_kebutuhan : integer;
     pemasukan,sisa: longint;
-    pengeluaran: array [1..5] of longint;
     total : integer;
 
 procedure inputanUser;
@@ -38,32 +37,42 @@ clrscr;
         end;
     end;
     sisa := pemasukan - total;
+end;
 
+procedure Persentase;
+begin
     for i := 1 to b_kebutuhan do
     begin
     with butuh[i] do
     begin
     persen := (p_kebutuhan / total) * 100;
         end;
-    end; 
-end;
+    end;
+end; 
+
 
 procedure tabell;
 begin
-    writeln('============ TABEL PENGELUARAN ===============');
-    writeln('NO     NAMA KEBUTUHAN     BIAYA     PERSENTASE');
-    writeln('----------------------------------------------');
+    writeln('================= TABEL PENGELUARAN =================');
+    writeln('No   Nama Kebutuhan        Biaya          Persentase');
+    writeln('------------------------------------------------------');
 
     for i := 1 to b_kebutuhan do
     begin
         with butuh[i] do
         begin
-        writeln(i, '      ', nama, '          ', p_kebutuhan, '          ', persen:0:2, '%') ;
+        writeln(i, '      ', nama:15, '          ', p_kebutuhan:10, '          ', persen:6:2, '%') ;
         end;
     end;
+
+    writeln('------------------------------------------------------');
+    writeln('Total Pengeluaran : ', total);
+    writeln('Sisa Uang         : ', sisa);
+    writeln('======================================================');
 end;
 
 begin
 inputanUser;
+Persentase;
 tabell;
 end.
