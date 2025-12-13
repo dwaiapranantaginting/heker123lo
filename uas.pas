@@ -88,11 +88,15 @@ repeat
 until total_porsi <= max_persen; writeln;
 writeln ('===== PORSI UANG PER KEBUTUHAN DALAM SATU BULAN =====');
 for i:=1 to b_kebutuhan do
-    begin
         writeln (butuh[i].nama,': ',butuh[i].pemasukan_perkebutuhan);
-        butuh[i].sisa_perkebutuhan:= butuh[i].pemasukan_perkebutuhan - butuh[i].p_kebutuhan;
-    end;
 writeln;
+end;
+
+procedure sisaperkebutuhan;
+begin
+    for i:=1 to b_kebutuhan do
+        butuh[i].sisa_perkebutuhan:= butuh[i].pemasukan_perkebutuhan - butuh[i].p_kebutuhan;
+    writeln;
 end;
 
 procedure tabell;
@@ -133,8 +137,10 @@ inputanUser;
 porsikebutuhan;
 input_keluaran;
 writeln;
+sisaperkebutuhan;
 tabell;
 write('ingin mengulang program??(y/n)'); readln(ulangan)
 until (ulangan = 'n') or (ulangan = 'N');
 end.
+
 
