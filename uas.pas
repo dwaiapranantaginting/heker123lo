@@ -121,7 +121,7 @@ begin
 
     writeln('-------------------------------------------------------------------------------');
     writeln('| Total Pengeluaran              : Rp ', total:10, '                         |');
-    writeln('| Persentase Pengeluaran Total   : ', persen_total:6:2, '%                                |');
+    writeln('| Persentase Pengeluaran Total   : ', persen_total:6:2, '%                               |');
     writeln('| Sisa Uang Bulanan              : Rp ', sisa:10, '                         |');
     writeln('===============================================================================');
 end;
@@ -135,5 +135,6 @@ input_keluaran;
 writeln;
 tabell;
 write('ingin mengulang program??(y/n)'); readln(ulangan)
-until (ulangan <> 'y') or (ulangan <> 'Y');
+until (ulangan = 'n') or (ulangan = 'N');
 end.
+
