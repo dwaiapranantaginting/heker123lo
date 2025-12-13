@@ -38,7 +38,10 @@ clrscr;
         write('jenis kebutuhan ke-', i, ' :'); readln(butuh[i].nama);
         end;
         writeln;
+end;
 
+procedure input_keluaran;
+begin
         writeln('pilih pengeluaran setiap jenis kebutuhan (misalnya skincare : 100000)');
         total := 0;
     for i:= 1 to b_kebutuhan do begin
@@ -82,41 +85,54 @@ repeat
         writeln ('Porsi kebutuhan melebihi kapasitas!! Silakan input ulang');
         pemasukan_perkebutuhan:= round(pemasukan*(porsi/100));
     end;
-until total_porsi <= max_persen;
+until total_porsi <= max_persen; writeln;
 writeln ('===== PORSI UANG PER KEBUTUHAN DALAM SATU BULAN =====');
 for i:=1 to b_kebutuhan do
     begin
         writeln (butuh[i].nama,': ',butuh[i].pemasukan_perkebutuhan);
         butuh[i].sisa_perkebutuhan:= butuh[i].pemasukan_perkebutuhan - butuh[i].p_kebutuhan;
     end;
+writeln;
 end;
+
 procedure tabell;
 begin
     Persentase;
     hitungpersentotal;
-    writeln('================= TABEL PENGELUARAN =================');
-    writeln('No   Nama Kebutuhan        Biaya          Persentase          Sisa Saldo');
-    writeln('------------------------------------------------------');
+
+    writeln;
+    writeln('============================= TABEL PENGELUARAN =============================');
+    writeln('| No | Nama Kebutuhan   |   Biaya (Rp) | Persen (%) |   Sisa Saldo (Rp) |');
+    writeln('-------------------------------------------------------------------------------');
 
     for i := 1 to b_kebutuhan do
     begin
         with butuh[i] do
         begin
-        writeln(i, '      ', nama:15, '          ', p_kebutuhan:10, '          ', persen:6:2, '%', '          ', sisa_perkebutuhan:10) ;
+            writeln(
+                '| ', i:2, ' | ',
+                nama:16, ' | ',
+                p_kebutuhan:12, ' | ',
+                persen:10:2, ' | ',
+                sisa_perkebutuhan:15, ' |'
+            );
         end;
     end;
 
-    writeln('------------------------------------------------------');
-    writeln('Total Pengeluaran                        : ', total);
-    writeln('persenan pengeluaran terhadap pemasukkan : ', persen_total:0:2, '%');
-    writeln('Sisa Uang                                : ', sisa);
-    writeln('======================================================');
+    writeln('-------------------------------------------------------------------------------');
+    writeln('| Total Pengeluaran              : Rp ', total:10, '                         |');
+    writeln('| Persentase Pengeluaran Total   : ', persen_total:6:2, '%                                |');
+    writeln('| Sisa Uang Bulanan              : Rp ', sisa:10, '                         |');
+    writeln('===============================================================================');
 end;
+
 
 begin
 repeat
 inputanUser;
 porsikebutuhan;
+input_keluaran;
+writeln;
 tabell;
 write('ingin mengulang program??(y/n)'); readln(ulangan)
 until (ulangan <> 'y') or (ulangan <> 'Y');
