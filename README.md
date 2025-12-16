@@ -1,2 +1,5 @@
-# heker123lo
-repository untuk tugas akhir lab 4 yang gacor ygy
+Nama Projek : program mengatur keuangan
+Nama Kelompok : heker123lo
+Anggota : - Dwaia Prananta Ginting
+          - 
+
